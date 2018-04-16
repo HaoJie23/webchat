@@ -11,65 +11,65 @@ import BaseTransition from '../BaseTransition.vue'
 import loading from '../components/loading/loading'
 
 Router.prototype.goBack = function () {
-  this.isBack = true
-  window.history.go(-1)
+    this.isBack = true
+    window.history.go(-1)
 }
 Vue.use(Router)
 
 const router = new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'BaseTransition',
-      component: BaseTransition,
-      children: [
+    routes: [
         {
-          path: '',
-          name: 'index',
-          component: Index
+            path: '/',
+            name: 'BaseTransition',
+            component: BaseTransition,
+            children: [
+                {
+                    path: '',
+                    name: 'index',
+                    component: Index
+                },
+                {
+                    path: '/chat',
+                    name: 'chat',
+                    component: Chat
+                },
+                {
+                    path: '/chat-history',
+                    name: 'chat-history',
+                    component: ChatHistory
+                }
+            ]
         },
         {
-          path: '/chat',
-          name: 'chat',
-          component: Chat
+            path: '/robot',
+            name: 'Robot',
+            component: Robot
         },
         {
-          path: '/chat-history',
-          name: 'chat-history',
-          component: ChatHistory
+            path: '/home',
+            name: 'Home',
+            component: Home
+        },
+        {
+            path: '/register',
+            name: 'Register',
+            component: Register
+        },
+        {
+            path: '/login',
+            name: 'Login',
+            component: Login
         }
-      ]
-    },
-    {
-      path: '/robot',
-      name: 'Robot',
-      component: Robot
-    },
-    {
-      path: '/home',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/register',
-      name: 'Register',
-      component: Register
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    }
-  ]
+    ]
 })
 
 router.beforeEach((to, from, next) => {
-  loading.show()
-  next()
+    loading.show()
+    next()
 })
 
 router.afterEach(route => {
-  loading.hide()
+    loading.hide()
 })
 
 export default router
